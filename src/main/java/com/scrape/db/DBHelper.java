@@ -1,4 +1,4 @@
-package com.scrap.db;
+package com.scrape.db;
 
 import java.net.UnknownHostException;
 import java.util.Date;
