@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>scrape-util</groupId>
 	<artifactId>scrape-util</artifactId>
@@ -7,16 +7,16 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description></description>
 	<dependencies>
-	
-   <!-- Servlet api Related -->
+
+		<!-- Servlet api Related -->
 		<dependency>
-	      <groupId>javax.servlet</groupId>
-	      <artifactId>servlet-api</artifactId>
-	      <version>2.5</version>
-	      <scope>provided</scope>
-	    </dependency>
-    
-	<!-- Spring Related -->
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Spring Related -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -37,7 +37,7 @@
 			<artifactId>spring-orm</artifactId>
 			<version>3.1.1.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
@@ -45,28 +45,28 @@
 		</dependency>
 
 		<dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>1.0.2.RELEASE</version>
-        </dependency>
-    
-    <!-- MySQL database driver -->
-	<dependency>
-		<groupId>mysql</groupId>
-		<artifactId>mysql-connector-java</artifactId>
-		<version>5.1.9</version>
-	</dependency>
-	
-	<!-- Unit Testing Related -->
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.0.2.RELEASE</version>
+		</dependency>
+
+		<!-- MySQL database driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.9</version>
+		</dependency>
+
+		<!-- Unit Testing Related -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Log4j Related -->
-		
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -83,17 +83,17 @@
 			<version>1.5.10</version>
 		</dependency>
 		<dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.5.10</version>
-        </dependency>
-        <dependency>
-        	<groupId>joda-time</groupId>
-        	<artifactId>joda-time</artifactId>
-        	<version>2.1</version>
-      	</dependency>   
-      	
-      	<!-- Tiles Related -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.5.10</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+		<!-- Tiles Related -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -124,7 +124,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<!-- http components -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -141,7 +141,7 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.1</version>
 		</dependency>
-		
+
 		<!-- jsoup HTML parser library @ http://jsoup.org/ -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
@@ -153,17 +153,24 @@
 			<artifactId>poi</artifactId>
 			<version>3.6</version>
 		</dependency>
-		
+
 		<!-- MongoDB -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
 			<version>2.10.1</version>
 		</dependency>
-		
-  </dependencies>
-  
-  <!-- Build Related   -->
+
+		<!-- JSoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+	</dependencies>
+
+	<!-- Build Related -->
 	<build>
 		<finalName>scrape-util</finalName>
 		<plugins>
@@ -187,7 +194,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>development</id>
@@ -222,5 +229,5 @@
 				</plugins>
 			</build>
 		</profile>
-		</profiles>
+	</profiles>
 </project>
