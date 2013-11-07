@@ -1,5 +1,8 @@
 package com.scrape.base;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Event {
 	
 	String week;
@@ -14,8 +17,6 @@ public class Event {
 	public void setWeek(String week) {
 		this.week = week;
 	}
-	
-
 	
 	public String getDate() {
 		return date;
@@ -34,5 +35,12 @@ public class Event {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return "Event [week=" + week + ", date=" + date + ", time=" + time
+				+ ", name=" + name + "]";
 	}	
+	
 }

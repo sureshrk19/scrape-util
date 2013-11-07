@@ -3,6 +3,7 @@ package com.scrape.base;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.jsoup.nodes.Document;
@@ -23,13 +24,13 @@ public class Scrapper extends BaseScrapper{
 		this.listSelector=listSelector;
 	}
 	
-	public String parse() throws Exception {
+	public List<Event> parse() throws Exception {
 		
 		validate();
 		String pageHtml=this.fetchPageHTML(baseUrl);
 		Document doc= this.fetchPageDocument(pageHtml);
 		Elements elements = doc.select(listSelector);
-		java.util.List<Event> eventList = new ArrayList<Event>();
+		List<Event> eventList = new ArrayList<Event>();
 		for (Element element : elements) {
 			Event e=new Event();
 			for (Map.Entry<String, String> entry : keySelectorMap.entrySet()) {
@@ -39,8 +40,7 @@ public class Scrapper extends BaseScrapper{
 			}
 			eventList.add(e);
 		}
-		Gson gson = new Gson();
-		return gson.toJson(eventList);
+		return eventList;
 	}
 
 	private void validate() throws Exception {

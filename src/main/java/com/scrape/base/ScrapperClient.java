@@ -1,28 +1,37 @@
 package com.scrape.base;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.springframework.stereotype.Service;
 
+
+@Service("scrapperClient")
 public class ScrapperClient {
 	
-	public static void main(String[] args) throws Exception {
+	private static Logger log = Logger.getLogger(ScrapperClient.class);
+	
+	public List<Event> getScrapeData () throws Exception {
+		
 		Properties prop=readConfigFile("nfl.properties");
 		
 		String baseUrl = prop.getProperty("baseurl");
-		String listSelector = prop.getProperty("listselector");
-		
+        String listSelector = prop.getProperty("listselector");
+        
 		removeAllExceptActualProperties(prop);
-		Map<String, String>keySelectorMap=getKeySelectorMap(prop);
+		Map<String, String>keySelectorMap = getKeySelectorMap(prop);
 		
 		Scrapper scrapper = new Scrapper(baseUrl,listSelector,keySelectorMap);
-		String jsonString = scrapper.parse();
-		System.out.println(jsonString);
+		List<Event> eventList = scrapper.parse();
+		return eventList;
 	}
+	
 	private static Map<String, String> getKeySelectorMap(Properties prop) {
 		Map<String, String>keySelectorMap = new HashMap<String, String>();
 		for (Entry<Object, Object> entry : prop.entrySet()) {
@@ -30,18 +39,19 @@ public class ScrapperClient {
 		}
 		return keySelectorMap;
 	}
+	
 	private static void removeAllExceptActualProperties(Properties prop) {
 		prop.remove("baseurl");
 		prop.remove("listselector");
 	}
+	
 	static Properties readConfigFile(String fileName){
 		Properties prop = new Properties();
 		try {
-    		prop.load(new FileInputStream("config/"+fileName));
+			prop = PropertiesLoaderUtils.loadAllProperties("nfl.properties");
     	} catch (IOException ex) {
     		ex.printStackTrace();
         }
     	return prop;
-		
 	}
 }
