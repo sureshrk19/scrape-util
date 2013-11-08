@@ -29,7 +29,7 @@ public class MainController {
 	public String getStatusForm(HttpServletRequest request, Model model) throws ServletException {
 		log.info("getStatusForm :: Begin");
 		HttpSession session = request.getSession(true);
-		dataBaseHelper.insertAllEvents();
+		//dataBaseHelper.insertAllEvents();
 		List<Event> eventList = dataBaseHelper.findAllEvents();
 		 Gson gson = new Gson();
 		session.setAttribute("scrapData",gson.toJson(eventList));
