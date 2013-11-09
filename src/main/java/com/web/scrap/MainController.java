@@ -31,8 +31,8 @@ public class MainController {
 		HttpSession session = request.getSession(true);
 		//dataBaseHelper.insertAllEvents();
 		List<Event> eventList = dataBaseHelper.findAllEvents();
-		 Gson gson = new Gson();
-		session.setAttribute("scrapData",gson.toJson(eventList));
+		Gson gson = new Gson();
+		session.setAttribute("scrapData", gson.toJson(eventList));
 		log.info("getStatusForm :: End");
 		return "statusform";
 	}

@@ -32,7 +32,7 @@ public class DataBaseHelper {
 		mongoOperations.createCollection(Event.class);
 
 		try {
-			List<Event> eventList = scrapperClient.getScrapeData();
+			List<Event> eventList = scrapperClient.getScrapperData();
 			mongoOperations.insert(eventList, Event.class);
 		} catch (Exception e) {
 			log.info("Exception ::"+e.getMessage());

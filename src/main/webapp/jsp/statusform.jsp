@@ -21,6 +21,8 @@
 </style>
 </head>
 <body>
+<% String scrapData = (String)session.getAttribute("scrapData"); %>
+	
 	<script id="entry-template" type="text/x-handlebars-template">
   		<div>
   		  <div class="row">
@@ -37,10 +39,8 @@
 
 	<script>
 
-	var data = [{"week":"10","date":"Nov 10","time":"4:05 PM ET","name":"Panthers"},{"week":"10","date":"Nov 10","time":"4:05 PM ET","name":"Panthers"},{"week":"11","date":"Nov 17","time":"4:25 PM ET","name":"Saints"},{"week":"12","date":"Nov 25","time":"8:40 PM ET","name":"Redskins"},{"week":"13","date":"Dec 01","time":"4:05 PM ET","name":"Rams"},{"week":"14","date":"Dec 08","time":"4:25 PM ET","name":"Seahawks"},{"week":"15","date":"Dec 15","time":"1:00 PM ET","name":"Buccaneers"},{"week":"16","date":"Dec 23","time":"8:40 PM ET","name":"Falcons"},{"week":"17","date":"Dec 29","time":"4:25 PM ET","name":"Cardinals"}];
-
 	var context = {
-	  items: data
+	  items: <%=scrapData %>
 	};
 
 	Handlebars.registerHelper('agree_button', function() {
@@ -52,34 +52,13 @@
 	  );
 	});
 
-
 	var source   = $("#entry-template").html();
 	var template = Handlebars.compile(source);
 
 	//alert(html);
 	var html    = template(context);
-
 	document.body.innerHTML = html;
 
 	</script>
-
-
-<%
-	String scrapData = (String)session.getAttribute("scrapData");
-	%>
-	
-	<table align="center" border="1" cellspacing="0" cellpadding="0">
-		<caption>
-			<strong>Scrap Response Information</strong>
-		</caption>
-			<tr>
-				<td>
-					<h4><%=scrapData %></h4>
-				</td>
-			</tr>
-	</table>
-
-
-
 </body>
 </html>

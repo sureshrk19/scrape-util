@@ -9,52 +9,52 @@ import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-public class Scrapper extends BaseScrapper{
+import org.springframework.stereotype.Service;
+
+@Service("scrapper")
+public class Scrapper extends BaseScrapper {
 	
 	private static Logger log = Logger.getLogger(Scrapper.class);
 	
-	private String baseUrl;
-	private String listSelector;
-	private Map<String, String> keySelectorMap;
-
-	public Scrapper(String baseUrl, String listSelector, Map<String, String> keySelectorMap) {
-		this.keySelectorMap = keySelectorMap;
-		this.baseUrl = baseUrl;
-		this.listSelector = listSelector;
-	}
-	
-	public List<Event> parse() throws Exception {
+	public List<Event> getScapperEventList(Map<String, String> scrapSelectorMap) throws Exception {
 		
-		validate();
+		log.info("getScapperEventList :: Begin");
+		
+		String baseUrl = scrapSelectorMap.get("baseurl");
+		String listSelector = scrapSelectorMap.get("listselector");
+
+		scrapSelectorMap.remove("baseurl");
+		scrapSelectorMap.remove("listselector");
+		
+		validate(baseUrl, listSelector, scrapSelectorMap);
 		String pageHtml = fetchPageHTML(baseUrl);
 		Document doc = fetchPageDocument(pageHtml);
 		Elements elements = doc.select(listSelector);
 		List<Event> eventList = new ArrayList<Event>();
 		for (Element element : elements) {
 			Event e = new Event();
-			for (Map.Entry<String, String> entry : keySelectorMap.entrySet()) {
+			for (Map.Entry<String, String> entry : scrapSelectorMap.entrySet()) {
 				String value = element.select(entry.getValue()).text();
 				Field field = Event.class.getDeclaredField(entry.getKey().substring(entry.getKey().lastIndexOf('.') + 1));
 				field.set(e, value);
 			}
 			eventList.add(e);
 		}
+		log.info("getScapperEventList :: End");
 		return eventList;
 	}
 
-	private void validate() throws Exception {
-		if(this.keySelectorMap.size() == 0){
+	private void validate(String baseUrl, String listSelector, Map<String, String> scrapSelectorMap) throws Exception {
+		
+		if(baseUrl.trim().length()==0){
+			log.error("baseUrl cannot be empty");
+		}
+		if(listSelector.trim().length()==0){
+			log.error("listSelector cannot be empty");
+		}
+		if(scrapSelectorMap.isEmpty()){
 			log.error("keySelectorMap cannot be empty");
 		}
 		
-		if(this.listSelector.trim().length()==0){
-			log.error("listSelector cannot be empty");
-		}
-		
-		if(this.baseUrl.trim().length()==0){
-			log.error("baseUrl cannot be empty");
-		}
 	}
 }
-
-
