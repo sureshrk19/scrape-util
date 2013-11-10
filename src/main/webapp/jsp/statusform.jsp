@@ -11,7 +11,7 @@
 	.col{
 		margin:10px;
 		display:inline-block;
-		width:22%;
+		width:15%;
 	}
 
 	.row:nth-child(1){
@@ -30,6 +30,7 @@
   		  	<div class='col'>Name</div>
   		  	<div class='col'>Location</div>
   		  	<div class='col'>Type</div>
+			<div class='col'>Source</div>
   		  </div>	
 		  {{#each items}}
 		  <div class='row'>{{agree_button}}</div>
@@ -48,7 +49,8 @@
 		"<div class='col'>"+this.date+"</div>" +
 	    "<div class='col'>"+this.name+"</div>" +
 	    "<div class='col'>"+this.location+"</div>" +
-	    "<div class='col'>"+this.type+"</div>" 
+	    "<div class='col'>"+this.type+"</div>" +
+	    "<div class='col'>"+this.source+"</div>"
 	  );
 	});
 

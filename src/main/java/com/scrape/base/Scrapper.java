@@ -33,6 +33,7 @@ public class Scrapper extends BaseScrapper {
 		List<Event> eventList = new ArrayList<Event>();
 		for (Element element : elements) {
 			Event e = new Event();
+			e.setSource(baseUrl);
 			for (Map.Entry<String, String> entry : scrapSelectorMap.entrySet()) {
 				String value = element.select(entry.getValue()).text();
 				Field field = Event.class.getDeclaredField(entry.getKey().substring(entry.getKey().lastIndexOf('.') + 1));

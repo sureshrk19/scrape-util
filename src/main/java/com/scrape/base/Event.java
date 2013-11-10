@@ -10,6 +10,7 @@ public class Event {
 	String name;
 	String location;
 	String type;
+	String source;
 	
 	public String getDate() {
 		return date + getTime();
@@ -44,9 +45,19 @@ public class Event {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	
 	@Override
 	public String toString() {
 		return "Event [date=" + date + ", time=" + time + ", name=" + name
-				+ ", location=" + location + ", type=" + type + "]";
+				+ ", location=" + location + ", type=" + type + ", source="
+				+ source + "]";
 	}
+	
 }
