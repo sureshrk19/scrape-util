@@ -5,32 +5,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Event {
 	
-	String week;
 	String date;
-	String time;
+	String time = "";
 	String name;
 	String location;
 	String type;
 	
-	public String getWeek() {
-		return week;
-	}
-	public void setWeek(String week) {
-		this.week = week;
-	}
-	
 	public String getDate() {
-		return date;
+		return date + getTime();
 	}
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
 	public String getTime() {
 		return time;
 	}
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -52,8 +46,7 @@ public class Event {
 	}
 	@Override
 	public String toString() {
-		return "Event [week=" + week + ", date=" + date + ", time=" + time
-				+ ", name=" + name + ", location=" + location + ", type="
-				+ type + "]";
+		return "Event [date=" + date + ", time=" + time + ", name=" + name
+				+ ", location=" + location + ", type=" + type + "]";
 	}
 }
