@@ -22,9 +22,11 @@ public class Scrapper extends BaseScrapper {
 		
 		String baseUrl = scrapSelectorMap.get("baseurl");
 		String listSelector = scrapSelectorMap.get("listselector");
+		String defaultType = scrapSelectorMap.get("defaulttype");
 
 		scrapSelectorMap.remove("baseurl");
 		scrapSelectorMap.remove("listselector");
+		scrapSelectorMap.remove("defaulttype");
 		
 		validate(baseUrl, listSelector, scrapSelectorMap);
 		String pageHtml = fetchPageHTML(baseUrl);
@@ -38,6 +40,9 @@ public class Scrapper extends BaseScrapper {
 				String value = element.select(entry.getValue()).text();
 				Field field = Event.class.getDeclaredField(entry.getKey().substring(entry.getKey().lastIndexOf('.') + 1));
 				field.set(e, value);
+				if(e.getType() == null || e.getType().isEmpty() ) {
+					e.setType(defaultType);
+				}
 			}
 			eventList.add(e);
 		}

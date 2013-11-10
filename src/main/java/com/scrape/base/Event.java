@@ -6,14 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Event {
 	
 	String date;
-	String time = "";
+	String time;
 	String name;
 	String location;
 	String type;
 	String source;
 	
 	public String getDate() {
-		return date + getTime();
+		return date;
 	}
 	public void setDate(String date) {
 		this.date = date;
