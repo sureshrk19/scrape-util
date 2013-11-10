@@ -26,10 +26,10 @@
 	<script id="entry-template" type="text/x-handlebars-template">
   		<div>
   		  <div class="row">
+			<div class='col'>Date</div>
   		  	<div class='col'>Name</div>
-  		  	<div class='col'>Week</div>
-  		  	<div class='col'>Time</div>
-  		  	<div class='col'>Date</div>
+  		  	<div class='col'>Location</div>
+  		  	<div class='col'>Type</div>
   		  </div>	
 		  {{#each items}}
 		  <div class='row'>{{agree_button}}</div>
@@ -45,10 +45,10 @@
 
 	Handlebars.registerHelper('agree_button', function() {
 	  return new Handlebars.SafeString(
+		"<div class='col'>"+this.date+"</div>" +
 	    "<div class='col'>"+this.name+"</div>" +
-	    "<div class='col'>"+this.week+"</div>" +
-	    "<div class='col'>"+this.time+"</div>" + 
-	    "<div class='col'>"+this.date+"</div>" 
+	    "<div class='col'>"+this.location+"</div>" +
+	    "<div class='col'>"+this.type+"</div>" 
 	  );
 	});
 

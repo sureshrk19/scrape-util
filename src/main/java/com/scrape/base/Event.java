@@ -9,7 +9,8 @@ public class Event {
 	String date;
 	String time;
 	String name;
-	
+	String location;
+	String type;
 	
 	public String getWeek() {
 		return week;
@@ -37,10 +38,22 @@ public class Event {
 		this.name = name;
 	}
 	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	@Override
 	public String toString() {
 		return "Event [week=" + week + ", date=" + date + ", time=" + time
-				+ ", name=" + name + "]";
-	}	
-	
+				+ ", name=" + name + ", location=" + location + ", type="
+				+ type + "]";
+	}
 }

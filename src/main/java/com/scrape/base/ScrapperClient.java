@@ -35,7 +35,8 @@ public class ScrapperClient {
 		
 		for (Map.Entry<String, Map<String, String>> propGroupEntry : propGroupMap.entrySet()) {
 			Map<String, String> scrapSelectorMap = propGroupMap.get(propGroupEntry.getKey());
-			eventList = scrapper.getScapperEventList(scrapSelectorMap);
+			List<Event> newEventList = scrapper.getScapperEventList(scrapSelectorMap);
+			eventList.addAll(newEventList);
 		}
 		log.info("getScrapeData :: End");
 		return eventList;
