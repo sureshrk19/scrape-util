@@ -41,7 +41,7 @@
 	<script>
 
 	var context = {
-	  items: <%=scrapData %>
+	  items: ${scrapData}
 	};
 
 	Handlebars.registerHelper('agree_button', function() {

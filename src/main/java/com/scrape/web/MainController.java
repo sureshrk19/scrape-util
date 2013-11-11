@@ -1,10 +1,9 @@
-package com.web.scrap;
+package com.scrape.web;
 
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +27,10 @@ public class MainController {
 	@RequestMapping("/statusform.htm")
 	public String getStatusForm(HttpServletRequest request, Model model) throws ServletException {
 		log.info("getStatusForm :: Begin");
-		HttpSession session = request.getSession(true);
-		//dataBaseHelper.insertAllEvents();
+		dataBaseHelper.insertAllEvents();
 		List<Event> eventList = dataBaseHelper.findAllEvents();
 		Gson gson = new Gson();
-		session.setAttribute("scrapData", gson.toJson(eventList));
+		model.addAttribute("scrapData", gson.toJson(eventList));
 		log.info("getStatusForm :: End");
 		return "statusform";
 	}
