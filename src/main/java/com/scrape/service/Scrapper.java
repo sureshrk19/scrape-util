@@ -1,4 +1,4 @@
-package com.scrape.base;
+package com.scrape.service;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -10,6 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+
+import com.scrape.model.Event;
 
 @Service("scrapper")
 public class Scrapper extends BaseScrapper {
@@ -39,6 +41,7 @@ public class Scrapper extends BaseScrapper {
 			for (Map.Entry<String, String> entry : scrapSelectorMap.entrySet()) {
 				String value = element.select(entry.getValue()).text();
 				Field field = Event.class.getDeclaredField(entry.getKey().substring(entry.getKey().lastIndexOf('.') + 1));
+				field.setAccessible(true);
 				field.set(e, value);
 				if(e.getType() == null || e.getType().isEmpty() ) {
 					e.setType(defaultType);

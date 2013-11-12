@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
-import com.scrape.base.Event;
-import com.scrape.db.DataBaseHelper;
+import com.scrape.dao.DataBaseHelper;
+import com.scrape.model.Event;
 
 @Controller
 @RequestMapping("/scrap")

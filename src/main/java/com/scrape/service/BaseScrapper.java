@@ -1,4 +1,4 @@
-package com.scrape.base;
+package com.scrape.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

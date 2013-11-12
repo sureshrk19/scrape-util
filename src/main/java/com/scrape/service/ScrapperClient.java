@@ -1,4 +1,4 @@
-package com.scrape.base;
+package com.scrape.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Service;
+
+import com.scrape.model.Event;
 
 @Service("scrapperClient")
 public class ScrapperClient {
@@ -72,7 +74,7 @@ public class ScrapperClient {
 		try {
 			prop = PropertiesLoaderUtils.loadAllProperties("scrapper.properties");
 		} catch (IOException ex) {
-			log.error("insertAllEvents :: IOException ::" + ex.getMessage());
+			log.error("getConfigProperties :: IOException ::" + ex.getMessage());
 		}
 		return prop;
 	}

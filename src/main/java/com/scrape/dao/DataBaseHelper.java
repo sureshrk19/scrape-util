@@ -1,4 +1,4 @@
-package com.scrape.db;
+package com.scrape.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
 
-import com.scrape.base.Event;
-import com.scrape.base.ScrapperClient;
+import com.scrape.model.Event;
+import com.scrape.service.ScrapperClient;
 
 @Component
 public class DataBaseHelper {

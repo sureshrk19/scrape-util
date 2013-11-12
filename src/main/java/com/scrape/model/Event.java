@@ -1,16 +1,16 @@
-package com.scrape.base;
+package com.scrape.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Event {
 	
-	String date;
-	String time;
-	String name;
-	String location;
-	String type;
-	String source;
+	private String date;
+	private String time;
+	private String name;
+	private String location;
+	private String type;
+	private String source;
 	
 	public String getDate() {
 		return date;

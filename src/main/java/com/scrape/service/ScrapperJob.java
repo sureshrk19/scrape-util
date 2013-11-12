@@ -1,4 +1,4 @@
-package com.scrape.base;
+package com.scrape.service;
 
 import org.apache.log4j.Logger;
 import org.quartz.JobExecutionContext;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
-import com.scrape.db.DataBaseHelper;
+import com.scrape.dao.DataBaseHelper;
 
 @Component
 public class ScrapperJob extends QuartzJobBean {

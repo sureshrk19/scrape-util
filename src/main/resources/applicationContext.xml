@@ -46,7 +46,7 @@
      <!--  Spring Quartz for ScrapperJob -->
      
      <bean name="scrapperJob" class="org.springframework.scheduling.quartz.JobDetailBean">
-  		<property name="jobClass" value="com.scrape.base.ScrapperJob"/>
+  		<property name="jobClass" value="com.scrape.service.ScrapperJob"/>
   		<property name="jobDataAsMap">
     		<map>
       			<entry key="dataBaseHelper" value-ref="dataBaseHelper"/>
@@ -54,7 +54,7 @@
   		</property>
 	</bean>
 	
-	<bean id="dataBaseHelper" class="com.scrape.db.DataBaseHelper"></bean>
+	<bean id="dataBaseHelper" class="com.scrape.dao.DataBaseHelper"></bean>
 	
 	
 	<bean id="cronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
