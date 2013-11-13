@@ -8,6 +8,8 @@ public class SearchCriteria implements Serializable {
 
 	private int pageNo;
 	private int pageSize;
+	private String sortByName;
+	private String sortOrder;
 	private String date;
 	private String name;
 	private String location;
@@ -24,6 +26,18 @@ public class SearchCriteria implements Serializable {
 	}
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+	public String getSortByName() {
+		return sortByName;
+	}
+	public void setSortByName(String sortByName) {
+		this.sortByName = sortByName;
+	}
+	public String getSortOrder() {
+		return sortOrder;
+	}
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
 	}
 	public String getDate() {
 		return date;
@@ -52,7 +66,9 @@ public class SearchCriteria implements Serializable {
 	@Override
 	public String toString() {
 		return "SearchCriteria [pageNo=" + pageNo + ", pageSize=" + pageSize
+				+ ", sortByName=" + sortByName + ", sortOrder=" + sortOrder
 				+ ", date=" + date + ", name=" + name + ", location="
 				+ location + ", type=" + type + "]";
 	}
+	
 }

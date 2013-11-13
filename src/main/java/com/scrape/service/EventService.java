@@ -7,14 +7,17 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.scrape.model.Event;
 import com.scrape.model.SearchCriteria;
 import com.scrape.repository.IEventRepository;
 
-@Repository("eventService")
+@Component
 @Transactional
 public class EventService {
 
@@ -35,11 +38,20 @@ public class EventService {
 		return results;
 	}
 	
-	public Page<Event> getEvents(SearchCriteria reviewCriteria) {
+	
+	public Page<Event> getEvents(SearchCriteria searchCriteria) {
 		log.info("getEvents :: Begin");
 		Page<Event> results = null;
 		try {
-			results = eventRepository.findAll(new PageRequest(reviewCriteria.getPageNo(), reviewCriteria.getPageSize()));
+			
+			Sort sort = null;
+			if(searchCriteria.getSortOrder().equalsIgnoreCase("asc")) {
+				sort = new Sort(Direction.ASC, searchCriteria.getSortByName());
+			} else {
+				sort = new Sort(Direction.DESC, searchCriteria.getSortByName());
+			}
+			Pageable  pageRequest = new PageRequest(searchCriteria.getPageNo(), searchCriteria.getPageSize(), sort);
+			results = eventRepository.findAll(pageRequest);
 		} catch (Exception e) {
 			log.info("Exception ::" + e.getMessage());
 		}
