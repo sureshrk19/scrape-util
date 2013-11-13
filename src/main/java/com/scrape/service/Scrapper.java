@@ -20,7 +20,7 @@ public class Scrapper extends BaseScrapper {
 	
 	public List<Event> getScapperEventList(Map<String, String> scrapSelectorMap) throws Exception {
 		
-		log.info("getScapperEventList :: Begin");
+		log.info("getScapperEventList :: Begin :: "+scrapSelectorMap.get("baseurl"));
 		
 		String baseUrl = scrapSelectorMap.get("baseurl");
 		String listSelector = scrapSelectorMap.get("listselector");

@@ -23,22 +23,17 @@
 	
 	<context:property-placeholder location="classpath*:*.properties"/>
 	
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		p:driverClassName="${jdbc.driverClassName}"
-		p:url="${jdbc.url}"
-		p:username="${jdbc.username}"
-		p:password="${jdbc.password}" />
-     
+     <!-- Activate Spring Data MongoDB repository support -->
+	 <mongo:repositories base-package="com.scrape.repository" />
+		
+	 <!-- Template for performing MongoDB operations -->
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-     <constructor-arg name="mongo" ref="mongo"/>
-     <constructor-arg name="databaseName" value="scrapdata"/>
+     	<constructor-arg name="mongo" ref="mongo"/>
+     	<constructor-arg name="databaseName" value="${mongo.db.name}"/>
      </bean>
  
- 	<!-- Factory bean that creates the Mongo instance -->
-    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-     <property name="host" value="localhost"/>
-    </bean>
+    <!-- MongoDB host -->
+	<mongo:mongo host="${mongo.host.name}" port="${mongo.host.port}"/>
      
  	<!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
 	 <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
@@ -49,12 +44,12 @@
   		<property name="jobClass" value="com.scrape.service.ScrapperJob"/>
   		<property name="jobDataAsMap">
     		<map>
-      			<entry key="dataBaseHelper" value-ref="dataBaseHelper"/>
+      			<entry key="initEventService" value-ref="initEventService"/>
     		</map>
   		</property>
 	</bean>
 	
-	<bean id="dataBaseHelper" class="com.scrape.dao.DataBaseHelper"></bean>
+	<bean id="initEventService" class="com.scrape.service.InitEventService"></bean>
 	
 	
 	<bean id="cronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">

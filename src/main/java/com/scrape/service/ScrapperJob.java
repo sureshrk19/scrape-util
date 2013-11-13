@@ -7,27 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
-import com.scrape.dao.DataBaseHelper;
-
 @Component
 public class ScrapperJob extends QuartzJobBean {
 
 	private static Logger log = Logger.getLogger(ScrapperJob.class);
 
 	@Autowired
-	DataBaseHelper dataBaseHelper;
+	InitEventService initEventService;
 
 	/**
 	   * Setter called after the ScrapperJob is instantiated
 	   * with the value from the JobDetailBean
 	   */
-	  public void setDataBaseHelper(DataBaseHelper dataBaseHelper) {
-	    this.dataBaseHelper = dataBaseHelper;
+	  public void setDataBaseHelper(InitEventService initEventService) {
+	    this.initEventService = initEventService;
 	  }
 	  
 	protected void executeInternal(JobExecutionContext ctx) throws JobExecutionException {
 		log.info("executeInternal :: ScrapperJob :: Begin");
-		dataBaseHelper.insertAllEvents();
+		initEventService.insertAllEvents();
 		log.info("executeInternal :: ScrapperJob :: End");
 	}
 }
