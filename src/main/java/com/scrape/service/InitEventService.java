@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.scrape.exception.WebAppApplicationException;
 import com.scrape.model.Event;
 
 @Component
@@ -22,7 +23,7 @@ public class InitEventService {
 	@Autowired
 	ScrapperClient scrapperClient;
 
-	public void insertAllEvents() {
+	public void insertAllEvents() throws WebAppApplicationException {
 
 		log.info("insertAllEvents :: Begin.");
 
@@ -36,6 +37,7 @@ public class InitEventService {
 			mongoTemplate.insert(eventList, Event.class);
 		} catch (Exception e) {
 			log.info("Exception ::" + e.getMessage());
+			throw new WebAppApplicationException(e);
 		}
 		log.info("insertAllEvents :: End!");
 	}

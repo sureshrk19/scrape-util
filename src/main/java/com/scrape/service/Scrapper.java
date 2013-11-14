@@ -64,6 +64,5 @@ public class Scrapper extends BaseScrapper {
 		if(scrapSelectorMap.isEmpty()){
 			log.error("keySelectorMap cannot be empty");
 		}
-		
 	}
 }
