@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
+import com.scrape.exception.WebAppApplicationException;
+
 @Component
 public class ScrapperJob extends QuartzJobBean {
 
@@ -25,7 +27,12 @@ public class ScrapperJob extends QuartzJobBean {
 	  
 	protected void executeInternal(JobExecutionContext ctx) throws JobExecutionException {
 		log.info("executeInternal :: ScrapperJob :: Begin");
-		initEventService.insertAllEvents();
+		try {
+			initEventService.insertAllEvents();
+		} catch (WebAppApplicationException e) {
+			log.error("Exception ::" + e.getMessage());
+			throw new JobExecutionException();
+		}
 		log.info("executeInternal :: ScrapperJob :: End");
 	}
 }
