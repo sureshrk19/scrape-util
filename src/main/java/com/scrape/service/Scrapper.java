@@ -43,11 +43,13 @@ public class Scrapper extends BaseScrapper {
 				Field field = Event.class.getDeclaredField(entry.getKey().substring(entry.getKey().lastIndexOf('.') + 1));
 				field.setAccessible(true);
 				field.set(e, value);
+			}
+			if(!e.getName().isEmpty()) {
 				if(e.getType() == null || e.getType().isEmpty() ) {
 					e.setType(defaultType);
 				}
+				eventList.add(e);
 			}
-			eventList.add(e);
 		}
 		log.info("getScapperEventList :: End");
 		return eventList;
