@@ -74,6 +74,15 @@ public class MainController {
 			model.addAttribute("totalPages", totalPages);
 			model.addAttribute("totalRecords", totalRecords);
 			model.addAttribute("pageNo", pageNo);
+
+
+			model.addAttribute("name", searchCriteria.getName());
+			model.addAttribute("location", searchCriteria.getLocation());		
+			model.addAttribute("type", searchCriteria.getType());
+			model.addAttribute("fromDate", searchCriteria.getFromDate());
+			model.addAttribute("toDate", searchCriteria.getToDate());
+			model.addAttribute("source", searchCriteria.getSource());
+
 		} catch (WebAppApplicationException e) {
 			log.error("searchEvents :: Failed to getting events", e);
 			throw new ServletException();

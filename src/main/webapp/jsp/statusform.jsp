@@ -90,10 +90,23 @@
 	</div>
 
 	<div class="pagination">
-		
-		<div class="navigationBtn textcenter"><span>Prev</span></div>
-		<div class="navigationBtn textcenter"><span>Next</span></div>
-		
+		<form id="navigationForm"  method="post" action="">
+				<div style="display:none;">
+					<input type="text" id="name" name="name" value="${name}" >
+					<input type="text" id="location" name="location" value="${location}" >
+					<input type="text" id="source" name="source" value="${source}" >
+					<input type="text" id="from" name="from" value="${fromDate}" >
+					<input type="text" id="to" name="to" value="${toDate}" >
+
+					<input type="text" id="pageNo" name="pageNo" value="${pageNo}">
+					<input type="text" id="totalRecords" name="totalRecords" value="${totalRecords}">
+
+					<input class="navigationFormSubmitBtn" type="submit">
+				</div>	
+
+				<div class="navigationBtn textcenter prev"><span>Prev</span></div>
+				<div class="navigationBtn textcenter next"><span>Next</span></div>
+		</form>	
 	</div>	
 
 
@@ -148,6 +161,15 @@
 	<script>
 		$(function() {
    			 $("#to,#from").datepicker();
+   			 $(".navigationBtn").click(function(){
+   			 	if($(this).hasClass("prev")){
+   			 		$("#pageNo").val(parseInt($("#pageNo").val(),10) - 1);
+   			 	}
+   			 	else{
+   			 		$("#pageNo").val(parseInt($("#pageNo").val(),10) + 1);	
+   			 	}
+   			 	$(".navigationFormSubmitBtn").click();
+   			 })
   		});
 	</script>
 
