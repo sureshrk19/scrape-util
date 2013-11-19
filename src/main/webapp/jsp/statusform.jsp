@@ -71,12 +71,12 @@
 
 				<span>
 					<label for="name">From</label>
-					<input type="text" id="from" name="from" >
+					<input type="text" id="from" name="fromDate" >
 				</span>
 
 				<span>
 					<label for="name">To</label>
-					<input type="text" id="to" name="to">
+					<input type="text" id="to" name="toDate">
 				</span>
 
 				

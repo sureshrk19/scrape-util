@@ -88,11 +88,11 @@ public class EventService {
 				}
 			}
 
-			if (StringUtils.isNotBlank(searchCriteria.getDate())) {
+			if (StringUtils.isNotBlank(searchCriteria.getFromDate())) {
 				if (isWhere) {
-					criteria = criteria.and("date").is(searchCriteria.getDate());
+					criteria = criteria.and("date").is(searchCriteria.getFromDate());
 				} else {
-					criteria = Criteria.where("date").is(searchCriteria.getDate());
+					criteria = Criteria.where("date").is(searchCriteria.getFromDate());
 					isWhere = true;
 				}
 			}
@@ -105,6 +105,16 @@ public class EventService {
 					isWhere = true;
 				}
 			}
+			
+			if (StringUtils.isNotBlank(searchCriteria.getSource())) {
+				if (isWhere) {
+					criteria = criteria.and("source").is(searchCriteria.getSource());
+				} else {
+					criteria = Criteria.where("source").is(searchCriteria.getSource());
+					isWhere = true;
+				}
+			}
+			
 			query.addCriteria(criteria);
 
 			if (searchCriteria.getSortOrder().equalsIgnoreCase("asc")) {

@@ -10,10 +10,12 @@ public class SearchCriteria implements Serializable {
 	private int pageSize;
 	private String sortByName;
 	private String sortOrder;
-	private String date;
+	private String fromDate;
+	private String toDate;
 	private String name;
 	private String location;
 	private String type;
+	private String source;
 	
 	public int getPageNo() {
 		return pageNo;
@@ -39,11 +41,17 @@ public class SearchCriteria implements Serializable {
 	public void setSortOrder(String sortOrder) {
 		this.sortOrder = sortOrder;
 	}
-	public String getDate() {
-		return date;
+	public String getFromDate() {
+		return fromDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}
 	public String getName() {
 		return name;
@@ -63,12 +71,20 @@ public class SearchCriteria implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	
 	@Override
 	public String toString() {
 		return "SearchCriteria [pageNo=" + pageNo + ", pageSize=" + pageSize
 				+ ", sortByName=" + sortByName + ", sortOrder=" + sortOrder
-				+ ", date=" + date + ", name=" + name + ", location="
-				+ location + ", type=" + type + "]";
+				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", name="
+				+ name + ", location=" + location + ", type=" + type
+				+ ", source=" + source + "]";
 	}
 	
 }
