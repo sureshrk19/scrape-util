@@ -2,6 +2,7 @@ package com.scrape.service;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -73,12 +74,12 @@ public class EventService {
 		
 		try {
 
-			if (searchCriteria.getName() != null && !searchCriteria.getName().isEmpty()) {
+			if (StringUtils.isNotBlank(searchCriteria.getName())) {
 				criteria = Criteria.where("name").is(searchCriteria.getName());
 				isWhere = true;
 			}
 
-			if (searchCriteria.getType() != null && !searchCriteria.getType().isEmpty()) {
+			if (StringUtils.isNotBlank(searchCriteria.getType())) {
 				if (isWhere) {
 					criteria = criteria.and("type").is(searchCriteria.getType());
 				} else {
@@ -87,7 +88,7 @@ public class EventService {
 				}
 			}
 
-			if (searchCriteria.getDate() != null && !searchCriteria.getDate().isEmpty()) {
+			if (StringUtils.isNotBlank(searchCriteria.getDate())) {
 				if (isWhere) {
 					criteria = criteria.and("date").is(searchCriteria.getDate());
 				} else {
@@ -96,7 +97,7 @@ public class EventService {
 				}
 			}
 			
-			if (searchCriteria.getLocation() != null && !searchCriteria.getLocation().isEmpty()) {
+			if (StringUtils.isNotBlank(searchCriteria.getLocation())) {
 				if (isWhere) {
 					criteria = criteria.and("location").is(searchCriteria.getLocation());
 				} else {

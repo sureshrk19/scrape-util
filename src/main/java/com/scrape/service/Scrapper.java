@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -45,7 +46,7 @@ public class Scrapper extends BaseScrapper {
 				field.set(e, value);
 			}
 			if(!e.getName().isEmpty()) {
-				if(e.getType() == null || e.getType().isEmpty() ) {
+				if(StringUtils.isBlank(e.getType())) {
 					e.setType(defaultType);
 				}
 				eventList.add(e);

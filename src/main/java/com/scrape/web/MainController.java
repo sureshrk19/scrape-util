@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,8 +50,8 @@ public class MainController {
 		int rowsPerPage = 15;
 		try {
 			int pageNo = searchCriteria.getPageNo() > 0 ? searchCriteria.getPageNo() : 0;
-			String sortByName = searchCriteria.getSortByName() != null ? searchCriteria.getSortByName() : "source";
-			String sortOrder = searchCriteria.getSortOrder() != null ? searchCriteria.getSortOrder() : "asc";
+			String sortByName = StringUtils.isNotBlank(searchCriteria.getSortByName()) ? searchCriteria.getSortByName() : "source";
+			String sortOrder = StringUtils.isNotBlank(searchCriteria.getSortOrder()) ? searchCriteria.getSortOrder() : "asc";
 
 			searchCriteria.setPageNo(pageNo);
 			searchCriteria.setPageSize(rowsPerPage);
