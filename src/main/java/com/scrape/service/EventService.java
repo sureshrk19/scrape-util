@@ -90,9 +90,17 @@ public class EventService {
 
 			if (StringUtils.isNotBlank(searchCriteria.getFromDate())) {
 				if (isWhere) {
-					criteria = criteria.and("date").is(searchCriteria.getFromDate());
+					if (StringUtils.isNotBlank(searchCriteria.getToDate())) {
+						criteria = criteria.and("date").gte(searchCriteria.getFromDate()).lt(searchCriteria.getToDate());
+					} else {
+						criteria = criteria.and("date").is(searchCriteria.getFromDate());
+					}
 				} else {
-					criteria = Criteria.where("date").is(searchCriteria.getFromDate());
+					if (StringUtils.isNotBlank(searchCriteria.getToDate())) {
+						criteria = Criteria.where("date").gte(searchCriteria.getFromDate()).lt(searchCriteria.getToDate());
+					} else {
+						criteria = Criteria.where("date").is(searchCriteria.getFromDate());
+					}
 					isWhere = true;
 				}
 			}

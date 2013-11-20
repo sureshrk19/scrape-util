@@ -57,8 +57,6 @@ public class MainController {
 			searchCriteria.setPageSize(rowsPerPage);
 			searchCriteria.setSortByName(sortByName);
 			searchCriteria.setSortOrder(sortOrder);
-			//searchCriteria.setType("High School Sports");
-			//searchCriteria.setName("Greenville @ Girard");
 
 			// TODO : need to remove (testing purpose)
 			initEventService.insertAllEvents();
