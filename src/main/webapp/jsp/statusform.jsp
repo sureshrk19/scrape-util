@@ -11,6 +11,8 @@
 <style>
 	body{
 		margin:0px;
+		background-color: #dcdcdc;
+		font-family: sans-serif;
 	}
 	.row{
 		background-color: #dcdcdc;
@@ -46,6 +48,22 @@
 		line-height: 39px;
 		border-radius: 5px;
 		margin:0px 10px 0px 0px;
+	}
+	.meta{
+		position: relative;
+		height:55px;
+	}
+	.meta label{
+		display: inline-block;
+		position: absolute;
+		top:30%;
+		left:40%;
+		width: 300px;
+		font-size: 20px;
+		font-size: sans-serif;
+		color: black;
+		margin-top:-15px;
+		font-weight: bold;
 	}
 
 </style>
@@ -84,9 +102,12 @@
 		</form>	
 	</div>
 
+	
+	<div class="meta">
+		<label for="">Showing ${pageNo+1} out of <span>${totalPages}</span> pages</label>
+	</div>	
 	<div class="results">
-		
-		
+			
 	</div>
 
 	<div class="pagination">
@@ -110,12 +131,7 @@
 	</div>	
 
 
-	<div style="display:none">
-	<span>${scrapData}</span>
-	<span>${totalPages}</span>
-	<span>${totalRecords}</span>
-	<span>${pageNo}</span>
-	</div>
+	
 
 	<script id="entry-template" type="text/x-handlebars-template">
   		<div>
@@ -129,14 +145,26 @@
 		  {{#each items}}
 		  <div class='row'>{{agree_button}}</div>
 		  {{/each}}
+
+		   {{#unless items}}
+  				<h3 style='text-align:center;'>No Records found</h3>
+  			{{/unless}}
 		</div>
 	</script>
 
 	<script>
 
+
+	var totalPages = ${totalPages};
+	var pageNo=${pageNo};
+
 	var context = {
 	  items: ${scrapData}
 	};
+
+	Handlebars.registerHelper('myFunction', function() {
+	  return 
+	});
 
 	Handlebars.registerHelper('agree_button', function() {
 	  return new Handlebars.SafeString(
@@ -161,6 +189,15 @@
 	<script>
 		$(function() {
    			 $("#to,#from").datepicker();
+
+   			 if(pageNo == totalPages){
+   			 	$(".next").hide();
+   			 }	
+   			 if(pageNo == 0){
+   			 	$(".prev").hide();
+   			 }
+
+
    			 $(".navigationBtn").click(function(){
    			 	if($(this).hasClass("prev")){
    			 		$("#pageNo").val(parseInt($("#pageNo").val(),10) - 1);
