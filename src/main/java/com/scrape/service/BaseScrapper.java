@@ -19,7 +19,7 @@ public class BaseScrapper {
 			throw new Exception("No url specified for scrapping");
 		}
 		trustEveryone();
-		return Jsoup.connect(url).execute().body();
+		return Jsoup.connect(url).timeout(10000).ignoreHttpErrors(true).execute().body();
 	}
 	public Document fetchPageDocument(String html) throws Exception {
 		if(html.trim().length() == 0){
